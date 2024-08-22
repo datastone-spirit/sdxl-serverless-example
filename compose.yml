@@ -1,0 +1,16 @@
+services:
+  builder:
+    image: $registry/kunzhao-7220/sd-serverless:builder
+    build:
+      context: .
+      target: builder
+      args:
+      - BASE_URL=$registry
+  sd-serverless:
+    image: $registry/kunzhao-7220/sd-serverless:v1
+    build:
+      context: .
+      target: v1
+      args:
+      - BASE_URL=$registry
+
