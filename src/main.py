@@ -1,7 +1,7 @@
 import torch
 from sprite_gpu import start, Env
 from diffusers import DiffusionPipeline
-from types import Dict, Any
+from typing import Dict, Any
 from PIL import Image
 
 pipe = DiffusionPipeline.from_pretrained("/workspace/sdxl-base", force_download=False, torch_dtype=torch.float16, use_safetensors=True, variant="fp16")
