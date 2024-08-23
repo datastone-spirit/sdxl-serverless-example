@@ -16,19 +16,30 @@ def to_base64(images: Image.Image):
     with io.BytesIO() as output:
         im.save(output, format="PNG")
         contents = output.getvalue()
-        print(f"len is {len(contents)}")
         return base64.b64encode(contents).decode("utf-8")
+
+def get_valid_value(data: Dict, key: str, default_value: str, is_valid) -> int :
+   value = int(data.get(key, default_value)) 
+
+   if is_valid(value):
+       return value
+   return int(default_value)
 
 def handler(request: Dict[str, Any], env: Env):
     print(f"hello world! {request}")
     input = request.get("input")
+    height = get_valid_value(request, "height", "768", lambda x: x > 512 and x <= 1024)
+    width = get_valid_value(request, "width", "768", lambda x: x > 512 and x <= 1024)
+    num_inference_steps = get_valid_value(request, "num_inference_steps", "20", lambda x: x >= 4 and x <= 50)
+
     prompt = input.get("prompt")
     images = pipe(prompt=prompt,
-                  height = 768,
-                  width = 768,
-                  num_inference_steps=20).images[0]
-    result = '{"image": "%s"}' % to_base64(images)
-
+                  height = height,
+                  width = width,
+                  num_inference_steps=num_inference_steps).images[0]
+    base64_image = to_base64(images)
+    print(f"result len is {len(base64_image)}")
+    result = '{"image": "%s"}' % base64_image
     return result
 
 
