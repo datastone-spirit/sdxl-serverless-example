@@ -16,14 +16,19 @@ def to_base64(images: Image.Image):
     with io.BytesIO() as output:
         im.save(output, format="PNG")
         contents = output.getvalue()
+        print(f"len is {len(contents)}")
         return base64.b64encode(contents).decode("utf-8")
 
 def handler(request: Dict[str, Any], env: Env):
-    output = f"hello world! {request}"
+    print(f"hello world! {request}")
     input = request.get("input")
     prompt = input.get("prompt")
-    images = pipe(prompt=prompt).images[0]
+    images = pipe(prompt=prompt,
+                  height = 768,
+                  width = 768,
+                  num_inference_steps=20).images[0]
     result = '{"image": "%s"}' % to_base64(images)
+
     return result
 
 
