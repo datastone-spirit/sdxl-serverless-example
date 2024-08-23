@@ -16,7 +16,7 @@ COPY --from=builder /workspace/ /workspace
 
 WORKDIR /workspace
 
-COPY sdxl-base  /workspace
+COPY sdxl-base  /workspace/sdxl-base
 
 COPY src/ /workspace/src
 
