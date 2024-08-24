@@ -16,6 +16,8 @@ queuePrompt = async () => {
     }
 
     document.getElementById('message').innerText = "计算中....."
+    statusElem = document.getElementById('status')
+    statusElem.style.display = "inline-block"
     const response = await fetch(`https://api-serverless.datastone.cn/v1/${serverlessID}/sync`, {
         method: 'POST',
         headers: {
@@ -28,7 +30,9 @@ queuePrompt = async () => {
     });
     // display the inferencing message in the label
     const data = await response.json();
+    statusElem.style.display = "none"
     image = JSON.parse(data);
+    document.getElementById('status').setAttribute("style", "display: none;")
     document.getElementById('message').innerText = "结果："
     document.getElementById('result').src = "data:image/png;base64, " + image.image;
 }

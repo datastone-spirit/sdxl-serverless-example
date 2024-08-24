@@ -17,19 +17,25 @@
             box-sizing: border-box;
             resize: none;            
         }
+        .status {
+            display: none;
+            height: 40px;
+            width: 40px;
+            margin-left: 30px;
+        }
     </style>
     <script src="client.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <h1>Client</h1>
+        <h1>StableDiffusion XL Serverless Client Demo</h1>
         <div><input id="serverlessID" type="text" value="" placeholder="input the serverlessId"/></div>
         <div> <input id="apiSecret" type="password" value="" placeholder="input the apiSecret"/> </div>
         <div> <textarea id="prompt" v-model="response" placeholder="Response" id="prompt", aria-placeholder="input the prompt" >a cute puppy</textarea> </div>
         <button onClick="queuePrompt()">Send Request</button>
     </div>
-    <p id="message"></p>
+    <div style="height: 60px; align-content: center;"> <span id="message"></span><img id="status" class=status src="assets/loading.gif" /></div>
     <div width="1024", height="1024">
         <img id="result" src="" />
     </div>
