@@ -2,15 +2,17 @@
 
 这个例子演示了，如何为Sprite 构建Serverless 模板。
 
-# 前置条件
+## 构建模板
 
-## Docker 安装
+### 构建镜像
+
+#### Docker 安装
 你需要在机器上安装 Docker 和 Docker Compose
 
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker-compose](https://docs.docker.com/compose/install/)
 
-## SDXL 模型
+#### 准备SDXL 模型
 
 这个Serverless 应用，利用了huggingface的 `diffusers` 包， 由于众所周知的原因， 模型下载我们需要提前准备到本地目录 sdxl-base 目录下。 我已经把模型上传到阿里云盘，你只需要下载到项目的跟目录下即可，分享链接如下：
 
@@ -18,14 +20,14 @@
 https://www.alipan.com/s/GVDVPFUbw26
 ```
 
-# 如何构建镜像
+#### 如何构建镜像
 
 一单你下载了模型到项目的根目录下， 我们就可以开始构建我们的镜像了。 由于每个人都有自己的租户名和方便的拉取基础镜像。 所以我们需要提供一个环境变量 `tenant_name` 来指定你的租户名 和 `registry`， 来指定中心仓库的地址， 这两个环境变量没有默认值，都需要设置。
 
 构建镜像命令如下：
 
 ```bash
-registry=registry-serverless.datastone.cn tenant_name=kunzhao-7220 docker-compose -f template/compose.yml build sd-serverless
+registry=registry-serverless.datastone.cn tenant_name=kunzhao-7220 docker compose build sd-serverless
 ```
 
 如果你需要修改构建的版本号， 可以修改 `compose.yml` 文件中的 `image` 字段， 例如：
@@ -34,6 +36,8 @@ registry=registry-serverless.datastone.cn tenant_name=kunzhao-7220 docker-compos
     image: $registry/${tenant_name}/sd-serverless:v1
 ...
 ```
+
+#### 登录中心库
 
 构建完毕后， 可以把镜像直接推送到我们Serverless 服务的中心仓库上。在推送中心仓库前，你需要通过如下的界面获取登录凭证。
 通过如下的命令登录Serverless服务的中心仓库。：
