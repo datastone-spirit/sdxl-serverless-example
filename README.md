@@ -1,6 +1,6 @@
 # 介绍
 
-这个例子演示了，如何在Spirit 平台构建Serverless 服务。完整文档请查看 [Serverless 文档](https://docs.spiritlabs.cn/zh/Serverless/https://serverless.datastone.cn/sprite/docs/zh/quickstart/serverless-step-by-step-2)
+这个例子演示了，如何在Spirit 平台构建Serverless 服务。完整文档请查看 [Serverless 文档](https://serverless.datastone.cn/sprite/docs/zh/quickstart/serverless-step-by-step-2)
 
 ## 构建模板
 
