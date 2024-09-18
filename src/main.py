@@ -1,5 +1,5 @@
 import torch
-from sprite_gpu import start, Env
+from spirit_gpu import start, Env
 from diffusers import DiffusionPipeline
 from typing import Dict, Any
 from PIL import Image
