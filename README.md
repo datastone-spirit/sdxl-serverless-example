@@ -17,7 +17,7 @@
 这个Serverless 应用，利用了huggingface的 `diffusers` 包， 由于众所周知的原因， 模型下载我们需要提前准备到本地目录 sdxl-base 目录下。 我已经把模型上传到阿里云盘，你只需要下载到项目的跟目录下即可，分享链接如下：
 
 ```
-https://www.alipan.com/s/GVDVPFUbw26
+https://pan.baidu.com/s/11MTkqWRCHlVxACIw_UpZtQ?pwd=qs68
 ```
 
 #### 如何构建镜像
